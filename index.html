@@ -23,7 +23,7 @@ function generateUTCToken() {
   const minute = now.getUTCMinutes();
 
   // 순수 수학 연산, 난수 없음
-  let token = (year * 7551 + month * 2648 + day * 3013 + hour * 1927 + minute * 5510) % 1000000;
+  let token = (year * 7521 + month * 26648 + day * 33013 + hour * 19927 + minute * 55210) % 1000000;
 
   return token.toString().padStart(6, '0');
 }
