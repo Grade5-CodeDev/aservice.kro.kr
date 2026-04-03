@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>UTC 6자리 토큰</title>
+<title>KST 6자리 토큰</title>
 <style>
   body { font-family: monospace; font-size: 2em; text-align: center; margin-top: 50px; }
   .token { background: #f0f0f0; padding: 20px; border-radius: 10px; display: inline-block; }
@@ -13,19 +13,17 @@
 <div class="token" id="tokenDisplay">------</div>
 
 <script>
+// 한국 시간 기준 6자리 토큰 생성
 function generateKSTToken() {
   const now = new Date();
-  const year = now.getUTCFullYear();
-  const month = now.getUTCMonth(); // 0~11
-  const day = now.getUTCDate();
-  let hour = now.getUTCHours() + 9; // 한국 시간 = UTC + 9
-  const minute = now.getUTCMinutes();
+  // 한국 시간으로 변환 (UTC + 9시간)
+  const kst = new Date(now.getTime() + 9*60*60*1000);
 
-  // 24시 이상이면 하루 넘어가도록 조정
-  if (hour >= 24) {
-    hour -= 24;
-    // 필요하면 day도 +1 처리 가능 (월말 처리까지 포함하려면 복잡)
-  }
+  const year = kst.getFullYear();
+  const month = kst.getMonth(); // 0~11
+  const day = kst.getDate();
+  const hour = kst.getHours();
+  const minute = kst.getMinutes();
 
   // 순수 수학 연산, 난수 없음
   let token = (year * 7521 + month * 26648 + day * 33013 + hour * 19927 + minute * 55210) % 1000000;
@@ -42,10 +40,10 @@ function updateToken() {
 // 초기 표시
 updateToken();
 
-// 1초마다 체크, 분이 바뀌면 갱신
-let lastMinute = new Date().getUTCMinutes();
+// 1초마다 체크, 분이 바뀌면 갱신 (한국 시간 기준)
+let lastMinute = new Date(new Date().getTime() + 9*60*60*1000).getMinutes();
 setInterval(() => {
-  const currentMinute = new Date().getUTCMinutes();
+  const currentMinute = new Date(new Date().getTime() + 9*60*60*1000).getMinutes();
   if (currentMinute !== lastMinute) {
     lastMinute = currentMinute;
     updateToken();
