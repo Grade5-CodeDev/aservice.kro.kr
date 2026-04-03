@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>UTC 6자리 토큰</title>
+<style>
+  body { font-family: monospace; font-size: 2em; text-align: center; margin-top: 50px; }
+  .token { background: #f0f0f0; padding: 20px; border-radius: 10px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="token" id="tokenDisplay">------</div>
+
+<script>
+// UTC 기준 6자리 토큰 생성
+function generateUTCToken() {
+  const now = new Date();
+  const year = now.getUTCFullYear();
+  const month = now.getUTCMonth() + 1;
+  const day = now.getUTCDate();
+  const hour = now.getUTCHours();
+  const minute = now.getUTCMinutes();
+
+  // 순수 수학 연산, 난수 없음
+  let token = (year * 7 + month * 13 + day * 17 + hour * 19 + minute * 23) % 1000000;
+
+  return token.toString().padStart(6, '0');
+}
+
+// 화면에 표시
+function updateToken() {
+  const token = generateUTCToken();
+  document.getElementById('tokenDisplay').innerHTML = token;
+}
+
+// 초기 표시
+updateToken();
+
+// 1초마다 체크, 분이 바뀌면 갱신
+let lastMinute = new Date().getUTCMinutes();
+setInterval(() => {
+  const currentMinute = new Date().getUTCMinutes();
+  if (currentMinute !== lastMinute) {
+    lastMinute = currentMinute;
+    updateToken();
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
