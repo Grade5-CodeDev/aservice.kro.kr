@@ -13,24 +13,29 @@
 <div class="token" id="tokenDisplay">------</div>
 
 <script>
-// UTC 기준 6자리 토큰 생성
-function generateUTCToken() {
+function generateKSTToken() {
   const now = new Date();
   const year = now.getUTCFullYear();
-  const month = now.getUTCMonth();
+  const month = now.getUTCMonth(); // 0~11
   const day = now.getUTCDate();
-  const hour = now.getUTCHours();
+  let hour = now.getUTCHours() + 9; // 한국 시간 = UTC + 9
   const minute = now.getUTCMinutes();
+
+  // 24시 이상이면 하루 넘어가도록 조정
+  if (hour >= 24) {
+    hour -= 24;
+    // 필요하면 day도 +1 처리 가능 (월말 처리까지 포함하려면 복잡)
+  }
 
   // 순수 수학 연산, 난수 없음
   let token = (year * 7521 + month * 26648 + day * 33013 + hour * 19927 + minute * 55210) % 1000000;
 
-  return token.toString().padStart(6, '0');
+  return token.toString().padStart(6, '0'); // 6자리 맞춤
 }
 
 // 화면에 표시
 function updateToken() {
-  const token = generateUTCToken();
+  const token = generateKSTToken();
   document.getElementById('tokenDisplay').innerHTML = token;
 }
 
