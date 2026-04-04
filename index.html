@@ -10,44 +10,7 @@
 </head>
 <body>
 
-<div class="token" id="tokenDisplay">------</div>
-
-<script>
-// 한국 시간 기준 6자리 토큰 생성
-function generateKSTToken() {
-  const kst = new Date();
-
-  const year = kst.getFullYear();
-  const month = kst.getMonth() + 1; // 0~11
-  const day = kst.getDate();
-  const hour = kst.getHours();
-  const minute = kst.getMinutes();
-
-  // 순수 수학 연산, 난수 없음
-  let token = (year * 7521 + month * 26648 + day * 33013 + hour * 19927 + minute * 55210) % 1000000;
-
-  return token.toString().padStart(6, '0'); // 6자리 맞춤
-}
-
-// 화면에 표시
-function updateToken() {
-  const token = generateKSTToken();
-  document.getElementById('tokenDisplay').innerHTML = token;
-}
-
-// 초기 표시
-updateToken();
-
-// 1초마다 체크, 분이 바뀌면 갱신 (한국 시간 기준)
-let lastMinute = new Date(new Date().getTime() + 9*60*60*1000).getMinutes();
-setInterval(() => {
-  const currentMinute = new Date(new Date().getTime() + 9*60*60*1000).getMinutes();
-  if (currentMinute !== lastMinute) {
-    lastMinute = currentMinute;
-    updateToken();
-  }
-}, 1000);
-</script>
+<img src="랴.png">
 
 </body>
 </html>
