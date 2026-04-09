@@ -16,8 +16,8 @@
   for (let i = 1; i < 9; i++) {
     const li = document.createElement("li");
     const randomIndex = Math.floor(Math.random() * listes.length);
-    li.innerText = $`{i}번 학생의 자리는 {listes[randomIndex]}번 입니다.`
-    listes.splice(randomIndex,1)
+    li.innerText = `${i}번 학생의 자리는 ${listes[randomIndex]}번 입니다.`;
+    listes.splice(randomIndex, 1);
     chair.appendChild(li);
   }
 </script>
