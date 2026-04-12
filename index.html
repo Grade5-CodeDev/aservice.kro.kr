@@ -65,6 +65,11 @@ span {
       li.innerHTML = `${i+1}번 학생의 자리는 <span>${seats[i]}번</span> 입니다.`;
       chair.appendChild(li);
     }
+    const spans = document.querySelectorAll("span");
+
+    spans.forEach((el, i) => {
+      el.style.animationDelay = `${i * 0.3}s`;
+    });
   }
 </script>
 </body>
