@@ -18,7 +18,7 @@
     padding: 10px;
     align-items: center;
     margin:auto;
-    animation: spin 4s ease-out 1
+    animation: spin 5s ease-out 1;
     display: inline-block;
     font-size: 1.3em;
   }
@@ -28,7 +28,7 @@
 span {
   font-weight: 800;
   display: inline-block;
-  animation: spin 9s ease-out 1, rainbow 4s linear infinite;
+  animation: spin 16s ease-out 1, rainbow 4s linear infinite;
 }
 
 @keyframes spin {
@@ -70,7 +70,7 @@ span {
     const spans = document.querySelectorAll("span");
     
     spans.forEach((span, index) => {
-      span.style.animationDelay = `${-1.92 + (index * 0.24)}s`;
+      span.style.animationDelay = `${-4.00 + (index * 0.5)}s`;
     });
   }
 </script>
