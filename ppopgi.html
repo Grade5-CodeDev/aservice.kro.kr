@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>my뽑기</title>
+<meta name="viewport" content="width=device-width/2.5, initial-scale=0.88, maximum-scale=7">
+<style>
+  body { 
+    font-family: monospace;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 50px;
+  }
+  li {
+    border: 3px solid black;
+    font-family: "Comic Sans MS", Arial;
+    width: 600px;
+    padding: 10px;
+    margin:auto;
+    display: block;
+    font-size: 1.3em;
+  }
+  button {
+    font-size: 4rem;
+  }
+  span {
+    font-weight: 800;
+    display: inline-block;
+    animation: spin 16s ease-out 1, rainbow 4s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(108000deg); }
+  }
+  @keyframes rainbow {
+    0%   { color: hsl(0, 100%, 35%); }
+    25%  { color: hsl(90, 100%, 35%); }
+    50%  { color: hsl(180, 100%, 35%); }
+    75%  { color: hsl(270, 100%, 35%); }
+    100% { color: hsl(360, 100%, 35%); }
+  }
+</style>
+</head>
+<body>
+<a href="index.html" style="font-size: 2.3rem;">메인으로 돌아가기</a>
+<h1>자리 뽑기</h1>
+<button onclick="ppopgi()" id="btn">자리 뽑기</button>
+<div id="chair"></div>
+
+<script>
+function ppopgi() {
+  const chair = document.getElementById("chair");
+  chair.replaceChildren();
+
+  let seats = ['1','2','3','4','5','6','7','8'];
+
+  for (let i = seats.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [seats[i], seats[j]] = [seats[j], seats[i]];
+  }
+
+  for (let i = 0; i < 8; i++) {
+    const li = document.createElement("li");
+    li.innerHTML = `${i+1}번 학생의 자리는 <span>${seats[i]}번</span> 입니다.`;
+    chair.appendChild(li);
+  }
+
+  const spans = document.querySelectorAll("#chair span");
+  spans.forEach((span, index) => {
+    span.style.animationDelay = `${-4 + (index * 0.5)}s`;
+  });
+}
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    const spans = document.querySelectorAll("#chair span");
+    spans.forEach((span) => {
+      const transform = getComputedStyle(span).transform;
+      span.style.animation = "rainbow 4s linear infinite";
+      span.style.transform = transform;
+    });
+  }
+});
+</script>
+</body>
+</html>

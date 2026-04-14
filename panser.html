@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판서</title>
+</head>
+<body>
+    <a href="index.html" style="font-size: 2.3rem;">메인으로 돌아가기</a>
+    <div id="date"></div>
+    <h2>오늘의 한문장</h2>
+    <textarea rows="60" cols="1" style="font-size: 1.8rem;"></textarea>
+    <h2>1. 시필사</h2>
+    <textarea rows="75" cols="30" style="font-size: 1.6rem;"></textarea>
+    <h2>2. 달콤한 공부</h2>
+    <textarea rows="75" cols="8" style="font-size: 1.6rem;"></textarea>
+    <h2>3. 아름다운 책읽기</h2>
+    <h4>직접 작성!!</h4>
+    <h2>4. 글똥누기</h2>
+    <h4>직접 작성!!</h4>
+    <script>
+        const dateDiv = document.getElementById("date")
+        const date = new Date();
+        const utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+        const kst = new Date(utc + (3600000 * 9));
+        const year = kst.getFullYear();
+        const month = kst.getMonth() + 1;
+        const day = kst.getDay();
+        dateDiv.innerHTML = `${year}년 ${month}월 ${day}일`;
+    </script>
+</body>
+</html>

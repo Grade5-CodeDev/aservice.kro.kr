@@ -1,85 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>my뽑기</title>
-<meta name="viewport" content="width=device-width/2.5, initial-scale=0.88, maximum-scale=7">
-<style>
-  body { 
-    font-family: monospace;
-    font-size: 1.2em;
-    text-align: center;
-    margin-top: 50px;
-  }
-  li {
-    border: 3px solid black;
-    font-family: "Comic Sans MS", Arial;
-    width: 600px;
-    padding: 10px;
-    align-items: center;
-    margin:auto;
-    display: inline-block;
-    font-size: 1.3em;
-  }
-  button {
-    font-size: 4rem;
-  }
-span {
-  font-weight: 800;
-  display: inline-block;
-  animation: spin 16s ease-out 1, rainbow 4s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(108000deg); }
-}
-
-@keyframes rainbow {
-  0%   { color: hsl(0, 100%, 35%); }
-  25%  { color: hsl(90, 100%, 35%); }
-  50%  { color: hsl(180, 100%, 35%); }
-  75%  { color: hsl(270, 100%, 35%); }
-  100% { color: hsl(360, 100%, 35%); }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main-AService</title>
+    <script>
+        if (prompt("비밀번호 입력하세요") == "aservice1234T5p") {} else {
+            document.location.href = "haha.html"
+        }
+    </script>
 </head>
 <body>
-<h1>자리 뽑기</h1>
-<button onclick="ppopgi()" id="btn">자리 뽑기</button>
-<div id="chair"></div>
-<script>
-  const spans = document.querySelectorAll("span");
-  function ppopgi() {
-    const chair = document.getElementById("chair");
-    chair.replaceChildren();
-
-    let seats = ['1','2','3','4','5','6','7','8'];
-
-    // Fisher-Yates Shuffle
-    for (let i = seats.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [seats[i], seats[j]] = [seats[j], seats[i]];
-    }
-
-    for (let i = 0; i < 8; i++) {
-      const li = document.createElement("li");
-      li.innerHTML = `${i+1}번 학생의 자리는 <span>${seats[i]}번</span> 입니다.`;
-      chair.appendChild(li);
-    }
-    
-    spans.forEach((span, index) => {
-      span.style.animationDelay = `${-4.00 + (index * 0.5)}s`;
-    });
-  }
-  const btn = document.getElementById("btn");
-  btd.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-      spans.forEach((span) => {
-        span.style.animationDuration = "16s";
-      });
-    }
-  });
-</script>
+    <h1>메인-AService</h1>
+    <table border="2px solid black">
+        <tr>
+            <td><a href="ppopgi.html">학생 자리 뽑기</a></td>
+        </tr>
+    </table>
 </body>
 </html>
