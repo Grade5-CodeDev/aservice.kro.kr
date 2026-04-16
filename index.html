@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>main-AService</title>
     <script>
-        if ((prompt("비밀번호 입력하세요") == "샌무12345") || (window.localStorage.getItem("auth", "1"))) {
+        if (window.localStorage.getItem("auth", "1")) {} else if (prompt("비밀번호 입력하세요") == "샌무12345") {
             window.localStorage.setItem("auth", "1")
         } else {
             document.location.href = "haha.html"
