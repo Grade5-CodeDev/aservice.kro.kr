@@ -24,14 +24,27 @@
     <h2>4. 글똥누기</h2>
     <h4>직접 작성!!</h4>
     <script>
-        const dateDiv = document.getElementById("date")
-        const date = new Date();
-        const utc = date.getTime() + (date.getTimezoneOffset() * 60000);
-        const kst = new Date(utc + (3600000 * 9));
-        const year = kst.getFullYear();
-        const month = kst.getMonth() + 1;
-        const day = kst.getDay();
-        dateDiv.innerHTML = `${year}년 ${month}월 ${day}일`;
+    const dateDiv = document.getElementById("date");
+
+    // setInterval 안에서 매번 새로운 날짜 객체를 생성해야 시간이 흐릅니다.
+    setInterval(() => {
+        const date = new Date(); // 1. 여기서 다시 정의해야 시간이 업데이트됨
+
+        const year = date.getFullYear(); // 2. () 추가
+        const month = date.getMonth() + 1; // 3. () 추가
+        const day = date.getDate(); // 4. getDay는 요일(0-6)이므로 일자(date)로 변경
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        const milliseconds = date.getMilliseconds();
+
+        // 0~9일 경우 앞자리에 0을 붙여주는 패딩 처리 (옵션)
+        const p = (n) => String(n).padStart(2, "0");
+
+        dateDiv.innerHTML = `${year}-${p(month)}-${p(day)}, ${p(hours)}:${p(minutes)}:${p(seconds)}.${String(milliseconds).padStart(3, "0")}`;
+    }, 12); // 12ms 주기는 너무 빨라 CPU 부담이 될 수 있으니 보통 100~1000ms 추천
+
+
     </script>
 </body>
 </html>
