@@ -12,12 +12,17 @@
 </head>
 <body>
   <a href="index.html" style="font-size: 2.3rem;">메인으로 돌아가기</a>
-  <h1 style="font-size: 2.5rem;">알림장</h1>
+  <h1 style="font-size: 2.5rem;" id="name">이름을_설정해_주세요</h1>
+  <button style="font-size: 2.1rem;" onclick="changeName()">이름 설정 & 변경</button>
   <div id="date" style="font-size: 2.3rem;"></div>
   <textarea style="font-size: 1.7rem;"></textarea>
   <script>
     const dateDiv = document.getElementById("date");
-
+    const name = doucment.getElementById("name");
+    function changeName() {
+      newName = prompt("설정 또는 변경할 이름을 적으세요.",  "알림장")
+      name.innerHTML =`<h1 style=\"font-size: 2.5rem;\" id=\"name\">${newName}</h1>`
+    }
     // setInterval 안에서 매번 새로운 날짜 객체를 생성해야 시간이 흐릅니다.
     setInterval(() => {
         const date = new Date(); // 1. 여기서 다시 정의해야 시간이 업데이트됨
@@ -34,7 +39,7 @@
         const p = (n) => String(n).padStart(2, "0");
 
         dateDiv.innerHTML = `${year}-${p(month)}-${p(day)}, ${p(hours)}:${p(minutes)}:${p(seconds)}.${String(milliseconds).padStart(3, "0")}`;
-    }, 12); // 12ms 주기는 너무 빨라 CPU 부담이 될 수 있으니 보통 100~1000ms 추천
+    }, 16); // 12ms 주기는 너무 빨라 CPU 부담이 될 수 있으니 보통 100~1000ms 추천
 
 
   </script>
